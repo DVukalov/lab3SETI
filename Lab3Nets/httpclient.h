@@ -13,15 +13,15 @@ public:
     explicit HTTPClient(QObject* parent = 0);
     virtual ~HTTPClient();
 
-    void SDELAT_WSE();
-
 signals:
+    void enabled(bool enb);
+    void error(QString err);
     void message(QString txt);
     void data(QByteArray data);
 
 public slots:
-    void init();
     bool isValid();
+    void interrupt();
 
     void getData(QByteArray link);
 

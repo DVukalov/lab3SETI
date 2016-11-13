@@ -27,11 +27,16 @@ public:
     char* pBuffer;
     sockaddr_in	adr;
     QByteArray mFullData;
+    QByteArray mCurrentSite;
+    QByteArray mCurrentPath;
 
 public slots:
     void init();
-    void getInfo(QByteArray site, QByteArray path);
-    void connectToHost(QByteArray host);
+    void getInfo();
+    void connectToHost();
+
+private slots:
+    void cleanALL(int level);
     QByteArray getError(const char* function_name);
 };
 

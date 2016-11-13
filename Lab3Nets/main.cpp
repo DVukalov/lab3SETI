@@ -1,14 +1,16 @@
 #include "interface.h"
-#include "httpclient.h"
+#include "httpinterface.h"
 
+#include <QObject>
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Interface w;
-    HTTPClient* h = new HTTPClient;
-    h->SDELAT_WSE();
+    HTTPInterface h;
+
+    QObject::connect(&w, SIGNAL(HTTP()), &h, SLOT(show()));
     w.show();
 
     return a.exec();

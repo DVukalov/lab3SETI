@@ -19,7 +19,7 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_HTTPClientPrivate_t {
-    QByteArrayData data[11];
+    QByteArrayData data[10];
     char stringdata0[96];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
@@ -33,17 +33,16 @@ QT_MOC_LITERAL(0, 0, 17), // "HTTPClientPrivate"
 QT_MOC_LITERAL(1, 18, 4), // "init"
 QT_MOC_LITERAL(2, 23, 0), // ""
 QT_MOC_LITERAL(3, 24, 7), // "getInfo"
-QT_MOC_LITERAL(4, 32, 4), // "site"
-QT_MOC_LITERAL(5, 37, 4), // "path"
-QT_MOC_LITERAL(6, 42, 13), // "connectToHost"
-QT_MOC_LITERAL(7, 56, 4), // "host"
-QT_MOC_LITERAL(8, 61, 8), // "getError"
-QT_MOC_LITERAL(9, 70, 11), // "const char*"
-QT_MOC_LITERAL(10, 82, 13) // "function_name"
+QT_MOC_LITERAL(4, 32, 13), // "connectToHost"
+QT_MOC_LITERAL(5, 46, 8), // "cleanALL"
+QT_MOC_LITERAL(6, 55, 5), // "level"
+QT_MOC_LITERAL(7, 61, 8), // "getError"
+QT_MOC_LITERAL(8, 70, 11), // "const char*"
+QT_MOC_LITERAL(9, 82, 13) // "function_name"
 
     },
-    "HTTPClientPrivate\0init\0\0getInfo\0site\0"
-    "path\0connectToHost\0host\0getError\0"
+    "HTTPClientPrivate\0init\0\0getInfo\0"
+    "connectToHost\0cleanALL\0level\0getError\0"
     "const char*\0function_name"
 };
 #undef QT_MOC_LITERAL
@@ -54,7 +53,7 @@ static const uint qt_meta_data_HTTPClientPrivate[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -62,16 +61,18 @@ static const uint qt_meta_data_HTTPClientPrivate[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x0a /* Public */,
-       3,    2,   35,    2, 0x0a /* Public */,
-       6,    1,   40,    2, 0x0a /* Public */,
-       8,    1,   43,    2, 0x0a /* Public */,
+       1,    0,   39,    2, 0x0a /* Public */,
+       3,    0,   40,    2, 0x0a /* Public */,
+       4,    0,   41,    2, 0x0a /* Public */,
+       5,    1,   42,    2, 0x08 /* Private */,
+       7,    1,   45,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QByteArray, QMetaType::QByteArray,    4,    5,
-    QMetaType::Void, QMetaType::QByteArray,    7,
-    QMetaType::QByteArray, 0x80000000 | 9,   10,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::QByteArray, 0x80000000 | 8,    9,
 
        0        // eod
 };
@@ -83,9 +84,10 @@ void HTTPClientPrivate::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->init(); break;
-        case 1: _t->getInfo((*reinterpret_cast< QByteArray(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
-        case 2: _t->connectToHost((*reinterpret_cast< QByteArray(*)>(_a[1]))); break;
-        case 3: { QByteArray _r = _t->getError((*reinterpret_cast< const char*(*)>(_a[1])));
+        case 1: _t->getInfo(); break;
+        case 2: _t->connectToHost(); break;
+        case 3: _t->cleanALL((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: { QByteArray _r = _t->getError((*reinterpret_cast< const char*(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< QByteArray*>(_a[0]) = _r; }  break;
         default: ;
         }
@@ -117,13 +119,13 @@ int HTTPClientPrivate::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

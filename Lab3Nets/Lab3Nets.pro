@@ -18,15 +18,18 @@ TEMPLATE = app
 SOURCES += main.cpp\
         interface.cpp \
     httpclient.cpp \
-    ftpclient.cpp
+    ftpclient.cpp \
+    httpinterface.cpp
 
 HEADERS  += interface.h \
     httpclient.h \
     httpclient_p.h \
     ftpclient.h \
-    ftpclient_p.h
+    ftpclient_p.h \
+    httpinterface.h
 
-FORMS    += interface.ui
+FORMS    += interface.ui \
+    httpinterface.ui
 
 QMAKE_CXXFLAGS += -std=c++11
 
