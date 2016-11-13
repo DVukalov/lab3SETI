@@ -1,7 +1,9 @@
 #include <QFont>
 #include <QDebug>
 #include <QLayout>
+#include <QSettings>
 #include <QByteArray>
+#include <QStringList>
 
 #include "httpinterface.h"
 #include "ui_httpinterface.h"
@@ -40,7 +42,9 @@ HTTPInterface::HTTPInterface(QWidget *parent) :
     connect(pExitBut, &QPushButton::clicked, pClient, &HTTPClient::interrupt);
     connect(pExitBut, &QPushButton::clicked, this, &HTTPInterface::close);
 
-    pAddressLine = new QLineEdit();
+    pAddressLine = new QComboBox();
+    pAddressLine->setEditable(true);
+    pAddressLine->setInsertPolicy(QComboBox::InsertAtBottom);
     pAddressLine->setFont(QFont("Courier", 12));
 
     pInfoText = new QTextEdit();
@@ -75,6 +79,7 @@ HTTPInterface::HTTPInterface(QWidget *parent) :
                          Qt::WindowTitleHint);
     this->setWindowTitle("HTTP loader");
     this->setFixedSize(800, 600);
+    this->updateHistory();
 }
 
 HTTPInterface::~HTTPInterface()
@@ -84,8 +89,42 @@ HTTPInterface::~HTTPInterface()
 
 void HTTPInterface::load()
 {
-    if(!pAddressLine->text().isEmpty() && pAddressLine->text().contains("/"))
-        pClient->getData(QByteArray(pAddressLine->text().toUtf8()));
+    QString text = pAddressLine->currentText();
+    if(!text.isEmpty() && text.contains("/"))
+        pClient->getData(QByteArray(text.toUtf8()));
+    this->saveHistory();
+    this->updateHistory();
+}
+
+void HTTPInterface::saveHistory()
+{
+    QStringList sites;
+    QSettings settings("../Lab3Nets/history.txt", QSettings::IniFormat);
+
+    settings.beginGroup("HISTORY");
+    sites = settings.value("sites").toStringList();
+    settings.endGroup();
+
+    if(!sites.contains(pAddressLine->currentText()))
+    {
+        sites.insert(0, pAddressLine->currentText());
+        settings.beginGroup("HISTORY");
+        settings.setValue("sites", sites);
+        settings.endGroup();
+    }
+}
+
+void HTTPInterface::updateHistory()
+{
+    QStringList sites;
+    QSettings settings("../Lab3Nets/history.txt", QSettings::IniFormat);
+
+    settings.beginGroup("HISTORY");
+    sites = settings.value("sites").toStringList();
+    settings.endGroup();
+
+    pAddressLine->clear();
+    pAddressLine->insertItems(0, sites);
 }
 
 void HTTPInterface::showError(QString err)

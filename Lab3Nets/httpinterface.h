@@ -4,7 +4,7 @@
 #include <QLabel>
 #include <QWidget>
 #include <QTextEdit>
-#include <QLineEdit>
+#include <QComboBox>
 #include <QPushButton>
 #include <QMessageBox>
 
@@ -24,6 +24,8 @@ public:
 
 private slots:
     void load();
+    void saveHistory();
+    void updateHistory();
     void showError(QString err);
 
 private:
@@ -37,7 +39,7 @@ private:
     QPushButton* pExitBut;
     QPushButton* pLoadBut;    
     QMessageBox* pErrorBox;
-    QLineEdit* pAddressLine;
+    QComboBox* pAddressLine;
 
     HTTPClient* pClient;
 
