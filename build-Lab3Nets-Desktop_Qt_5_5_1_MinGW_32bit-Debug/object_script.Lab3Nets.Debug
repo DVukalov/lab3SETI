@@ -4,10 +4,12 @@ INPUT(
 ./debug\httpclient.o
 ./debug\ftpclient.o
 ./debug\httpinterface.o
+./debug\qftp.o
+./debug\qurlinfo.o
+./debug\qrc_ftp.o
 ./debug\moc_interface.o
 ./debug\moc_httpclient.o
 ./debug\moc_httpclient_p.o
 ./debug\moc_ftpclient.o
-./debug\moc_ftpclient_p.o
 ./debug\moc_httpinterface.o
 );

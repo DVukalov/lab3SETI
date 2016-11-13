@@ -4,10 +4,12 @@ INPUT(
 ./release\httpclient.o
 ./release\ftpclient.o
 ./release\httpinterface.o
+./release\qftp.o
+./release\qurlinfo.o
+./release\qrc_ftp.o
 ./release\moc_interface.o
 ./release\moc_httpclient.o
 ./release\moc_httpclient_p.o
 ./release\moc_ftpclient.o
-./release\moc_ftpclient_p.o
 ./release\moc_httpinterface.o
 );

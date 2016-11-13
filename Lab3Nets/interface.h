@@ -25,6 +25,7 @@ private:
 
     QPushButton* pFTPBut;
     QPushButton* pHTTPBut;
+    QPushButton* pCloseBut;
 };
 
 #endif // INTERFACE_H
