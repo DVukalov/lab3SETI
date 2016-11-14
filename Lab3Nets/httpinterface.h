@@ -26,6 +26,7 @@ private slots:
     void load();
     void saveHistory();
     void updateHistory();
+    void clearHistory();
     void showError(QString err);
 
 private:
@@ -37,7 +38,8 @@ private:
     QLabel* pStatusLabel;
     QTextEdit* pInfoText;
     QPushButton* pExitBut;
-    QPushButton* pLoadBut;    
+    QPushButton* pLoadBut;
+    QPushButton* pClearHistoryBut;
     QMessageBox* pErrorBox;
     QComboBox* pAddressLine;
 

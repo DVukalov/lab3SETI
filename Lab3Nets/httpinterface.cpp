@@ -42,6 +42,10 @@ HTTPInterface::HTTPInterface(QWidget *parent) :
     connect(pExitBut, &QPushButton::clicked, pClient, &HTTPClient::interrupt);
     connect(pExitBut, &QPushButton::clicked, this, &HTTPInterface::close);
 
+    pClearHistoryBut = new QPushButton("Clear History", this);
+    pClearHistoryBut->setFont(QFont("Courier", 12));
+    connect(pClearHistoryBut, &QPushButton::clicked, this, &HTTPInterface::clearHistory);
+
     pAddressLine = new QComboBox();
     pAddressLine->setEditable(true);
     pAddressLine->setInsertPolicy(QComboBox::InsertAtBottom);
@@ -62,6 +66,7 @@ HTTPInterface::HTTPInterface(QWidget *parent) :
     QHBoxLayout* addressLay = new QHBoxLayout;
     addressLay->addWidget(pAdrLabel);
     addressLay->addWidget(pAddressLine);
+    addressLay->addWidget(pClearHistoryBut);
 
     QHBoxLayout* statusLay = new QHBoxLayout;
     statusLay->addWidget(pStatusInfo);
@@ -125,6 +130,15 @@ void HTTPInterface::updateHistory()
 
     pAddressLine->clear();
     pAddressLine->insertItems(0, sites);
+}
+
+void HTTPInterface::clearHistory()
+{
+    QSettings settings("../Lab3Nets/history.txt", QSettings::IniFormat);
+    settings.clear();
+
+    pAddressLine->clearEditText();
+    pAddressLine->clear();
 }
 
 void HTTPInterface::showError(QString err)
